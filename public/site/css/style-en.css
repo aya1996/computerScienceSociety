@@ -1,0 +1,62 @@
+html,
+body {
+    direction: ltr;
+}
+
+.search-box form button {
+    left: auto;
+    right: 0;
+}
+
+.search-popup .form-group input[type="submit"],
+.search-popup .form-group button {
+    left: auto;
+    right: 30px;
+}
+
+.banner-home .row {
+    direction: ltr;
+}
+
+.home-slider .owl-nav {
+    left: auto;
+    right: 6vw;
+}
+
+.home-slider .owl-dots {
+    left: auto;
+    right: 6.5vw;
+}
+
+.text-banner .btn-group .btn-video .icon {
+    transform: none;
+}
+
+.img-about::after {
+    left: auto;
+    right: 0;
+}
+
+.text-about ul li::before {
+    right: auto;
+    left: 0;
+}
+
+.pro-block {
+    direction: ltr;
+}
+
+.ryad-logo {
+    margin: 0;
+    float: right;
+}
+
+.text-bread ul li a::after {
+    left: auto;
+    right: -4px;
+}
+
+.slider.slider-for {
+    padding-left: 0;
+    padding-right: 5px;
+}
