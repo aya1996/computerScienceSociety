@@ -38,7 +38,7 @@ class SemesterController extends Controller
                 return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
             }
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
         }

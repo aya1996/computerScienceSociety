@@ -25,6 +25,7 @@
                                 <div class="details">
                                     <h3>{{$teacher->name}}</h3>
                                     {{--  <span>CEO</span>  --}}
+                                    <p>{{$teacher->email}}</p>
                                 </div>
                             </div>
                         </div>

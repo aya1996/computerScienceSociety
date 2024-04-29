@@ -37,8 +37,8 @@
                         <table>
                             <thead>
                                 <th>اليوم</th>
-                                <th>الكلية</th>
-                                <th>المقرر</th>
+                                <th>القسم</th>
+                                <th>المادة</th>
                                 <th>القاعة</th>
                                 <th>الفصل الدراسي</th>
                                 <th>المحاضر</th>
@@ -51,7 +51,7 @@
                                     @foreach ($schedules as $item)
                                         <tr>
                                             <td>{{$item->day}}</td>
-                                            <td>{{$item->college->name ?? ''}}</td>
+                                            <td>{{$item->department->name ?? ''}}</td>
                                             <td>{{$item->course->name ?? ''}}</td>
                                             <td>{{$item->hall->name ?? ''}}</td>
                                             <td>{{$item->semester->name ?? ''}}</td>

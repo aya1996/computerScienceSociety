@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">القاعات</h4>
+                        <h4 class="page-title">المكاتب</h4>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body table-responsive">
-                            <h4 class="m-t-0 header-title mb-4"><b>القاعات</b></h4>
+                            <h4 class="m-t-0 header-title mb-4"><b>المكاتب</b></h4>
                             <div class="font-13 m-b-30 ">
                                 <button class="btn btn-success text-right waves-effect waves-light" data-toggle="modal" data-target="#create-modal">إضافة جديد</button>
                             </div>
@@ -29,7 +29,8 @@
                                     <tr>
                                         <th class="text-center">رقم</th>
                                         <th class="text-center">الاسم</th>
-                                        <th class="text-center">الكلية</th>
+                                        <th class="text-center">المبني </th>
+                                        <th class="text-center">الدور </th>
                                         <th class="text-center">التحكم</th>
                                     </tr>
                                 </thead>
@@ -40,7 +41,8 @@
                                             <tr>
                                                 <td class="text-center">{{$key + 1}}</td>
                                                 <td class="text-center">{{$hall->name}}</td>
-                                                <td class="text-center">{{$hall->college->name}}</td>
+                                                <td class="text-center">{{$hall->building->name}}</td>
+                                                <td class="text-center">{{$hall->level->name}}</td>
                                                 <td class="text-center">
                                                     <a href="{{route('halls.edit' ,$hall->id )}}">
                                                       <button type="button" class="btn btn-primary waves-effect width-md waves-light">تعديل</button>
@@ -103,11 +105,21 @@
                                 <input type="text" name="name" parsley-trigger="change" required placeholder="الاسم" class="form-control" id="userName">
                             </div>
                             <div class="form-group">
-                                <label for="userName">الكلية<span class="text-danger">*</span></label>
-                                <select name="college_id" parsley-trigger="change" required class="form-control">
-                                    @if ($colleges->count() > 0)
-                                        @foreach ($colleges as $college)
-                                            <option value="{{$college->id}}">{{$college->name}}</option>
+                                <label for="userName">المبني <span class="text-danger">*</span></label>
+                                <select name="building_id" parsley-trigger="change" required class="form-control">
+                                    @if ($buildings->count() > 0)
+                                        @foreach ($buildings as $building)
+                                            <option value="{{$building->id}}">{{$building->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">الدور <span class="text-danger">*</span></label>
+                                <select name="level_id" parsley-trigger="change" required class="form-control">
+                                    @if ($levels->count() > 0)
+                                        @foreach ($levels as $level)
+                                            <option value="{{$level->id}}">{{$level->name}}</option>
                                         @endforeach
                                     @endif
                                 </select>

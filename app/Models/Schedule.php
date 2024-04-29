@@ -12,9 +12,9 @@ class Schedule extends Model
     protected $guarded = [];
 
 
-    public function college()
+    public function department()
     {
-        return $this->belongsTo(College::class,'college_id');
+        return $this->belongsTo(Department::class,'department_id');
     }
     public function hall()
     {

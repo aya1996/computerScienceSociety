@@ -23,7 +23,7 @@ class CourseRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|min:2|max:255',
-            'college_id' => 'required|numeric|min:1',
+            'semester_id' => 'required|numeric|min:1',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ];
 

@@ -19,8 +19,8 @@
                     <div class="card">
                         <div class="card-body table-responsive">
                             <h4 class="m-t-0 header-title mb-4"><b>من نحن </b></h4>
-                            <div class="font-13 m-b-30 text-right">
-                                <button class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#create-modal">إضافة جديد</button>
+                            <div class="font-13 m-b-30 ">
+                                <button class="btn btn-success text-right waves-effect waves-light" data-toggle="modal" data-target="#create-modal">إضافة جديد</button>
                             </div>
                             <br>
 

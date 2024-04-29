@@ -22,7 +22,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card mt-4">
-                            <div class="card-header p-4  bg-gradient" style="background-color:#51be78;">
+                            <div class="card-header p-4  bg-gradient" style="background-color:#244852;">
                                 <h4 class="text-white text-center mb-0 mt-0">تسجيل الدخول</h4>
                             </div>
                             <div class="card-body">
@@ -43,7 +43,7 @@
 
                                     <div class="form-group row text-center mt-4 mb-4">
                                         <div class="col-12">
-                                            <button class="btn btn-md btn-block  waves-effect waves-light" type="submit" style="background-color:#51be78;">تسجيل الدخول</button>
+                                            <button class="btn btn-md btn-block  waves-effect waves-light" type="submit" style="background-color:#244852;">تسجيل الدخول</button>
                                         </div>
                                     </div>
                                 </form>

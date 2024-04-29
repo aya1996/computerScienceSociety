@@ -30,11 +30,21 @@
                                                 <input type="text" name="name" parsley-trigger="change" required placeholder="الاسم" class="form-control" id="userName" value="{{$hall->name}}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="userName">الكلية<span class="text-danger">*</span></label>
-                                                <select name="college_id" parsley-trigger="change" required class="form-control">
-                                                    @if ($colleges->count() > 0)
-                                                        @foreach ($colleges as $college)
-                                                            <option value="{{$college->id}}" {{$college->id == $hall->college_id ? 'selected' : ''}}>{{$college->name}}</option>
+                                                <label for="userName">المبني <span class="text-danger">*</span></label>
+                                                <select name="building_id" parsley-trigger="change" required class="form-control">
+                                                    @if ($buildings->count() > 0)
+                                                        @foreach ($buildings as $building)
+                                                            <option value="{{$building->id}}" {{$building->id == $hall->building_id ? 'selected' : ''}}>{{$building->name}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="userName">الدور <span class="text-danger">*</span></label>
+                                                <select name="level_id" parsley-trigger="change" required class="form-control">
+                                                    @if ($levels->count() > 0)
+                                                        @foreach ($levels as $level)
+                                                            <option value="{{$level->id}}" {{$level->id == $hall->level_id ? 'selected' : ''}}>{{$level->name}}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>

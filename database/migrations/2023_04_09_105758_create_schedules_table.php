@@ -18,11 +18,14 @@ class CreateSchedulesTable extends Migration
             $table->text('day');
             $table->text('time_from');
             $table->text('time_to');
-            $table->unsignedBigInteger('college_id');
+            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('semester_id');
+            $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('hall_id');
             $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('teacher_id')->references('id')->on('admins')->onDelete('cascade')->onUpdate('cascade');

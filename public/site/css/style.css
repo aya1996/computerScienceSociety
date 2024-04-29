@@ -18,8 +18,8 @@
 /* End Fonts */
 
 :root {
-    --main-color: #51be78;
-    --sec-color: #8be7ac;
+    --main-color: #244852;
+    --sec-color: #244852;
     --bg-color: #F5F5F5;
     --dark-color: #4c4e4b;
 }
@@ -1733,7 +1733,7 @@ footer {
 }
 
 .text-bread ul li span {
-    color: var(--sec-color);
+    color: #FFFFFF;
 }
 
 .text-bread ul li a::after {

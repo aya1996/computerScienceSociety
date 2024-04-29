@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollegesTable extends Migration
+class Buildings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCollegesTable extends Migration
      */
     public function up()
     {
-        Schema::create('colleges', function (Blueprint $table) {
-            $table->BigIncrements('id');
+        Schema::create('buildings', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('image');
             $table->timestamps();
+            
         });
     }
 
@@ -28,6 +28,7 @@ class CreateCollegesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colleges');
+        
+        Schema::dropIfExists('buildings');
     }
 }

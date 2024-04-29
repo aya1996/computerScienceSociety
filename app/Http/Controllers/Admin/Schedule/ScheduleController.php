@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin\Schedule;
 
 use Carbon\Carbon;
 use App\Models\Hall;
-use App\Models\College;
-use App\Models\Course;
+use App\Models\course;
 use App\Models\Semester;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Traits\FileManagerTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hall\HallRequest;
-use App\Http\Requests\College\CollegeRequest;
+use App\Http\Requests\course\courseRequest;
 use App\Http\Requests\Schedule\ScheduleRequest;
+use App\Models\Department;
 
 class ScheduleController extends Controller
 {
@@ -23,11 +23,12 @@ class ScheduleController extends Controller
         try
         {
             $halls = Hall::get();
-            $colleges = College::get();
+            $departments = Department::get();
             $semesters = Semester::get();
+            $courses = Course::get();
             $schedules = Schedule::where('teacher_id',auth()->id())->get();
             $days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس'];
-            return view('dashboard.schedules.index',compact('halls','colleges','schedules','days','semesters'));
+            return view('dashboard.schedules.index',compact('halls','departments','courses','schedules','days','semesters'));
         }
         catch(\Exception $ex)
         {
@@ -42,19 +43,19 @@ class ScheduleController extends Controller
         {
             if(isset($schedule) && $schedule->teacher_id == auth()->id())
             {
-                $colleges = College::get();
-                $halls = Hall::where('college_id',$schedule->college_id)->get();
+                $departments = Department::get();
+                $halls = Hall::get();
                 $semesters = Semester::get();
-                $courses = Course::where('college_id',$schedule->college_id)->get();
+                $courses = Course::where('department_id',$schedule->department_id)->get();
                 $days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس'];
-                return view('dashboard.schedules.edit',compact('schedule','colleges','courses','days','halls','semesters'));
+                return view('dashboard.schedules.edit',compact('schedule','departments','courses','days','halls','semesters'));
             }
             else
             {
                 return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
             }
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
         }
@@ -70,7 +71,7 @@ class ScheduleController extends Controller
             {
                 foreach($schedules as $item)
                 {
-                    if($item->college_id == $request->college_id && $item->hall_id == $request->hall_id
+                    if($item->department_id == $request->department_id && $item->hall_id == $request->hall_id
                     && $item->semester_id == $request->semester_id
                     && $item->day == $request->day)
                     {
@@ -96,14 +97,15 @@ class ScheduleController extends Controller
             }
 
             $schedule = new Schedule;
-            $schedule->college_id = $request->college_id;
+           
+            $schedule->day = $request->day;
+            $schedule->time_from = $request->time_from;
+            $schedule->time_to = $request->time_to;
+            $schedule->department_id = $request->department_id;
             $schedule->hall_id = $request->hall_id;
             $schedule->course_id = $request->course_id;
             $schedule->semester_id = $request->semester_id;
             $schedule->teacher_id = auth()->id();
-            $schedule->day = $request->day;
-            $schedule->time_from = $request->time_from;
-            $schedule->time_to = $request->time_to;
             $schedule->save();
             return redirect()->route('schedules.index')->with('success' , 'تم الإضافة بنجاح');
         }
@@ -126,7 +128,7 @@ class ScheduleController extends Controller
                 {
                     foreach($schedules as $item)
                     {
-                        if($item->college_id == $request->college_id && $item->hall_id == $request->hall_id
+                        if($item->department_id == $request->department_id && $item->hall_id == $request->hall_id
                         && $item->semester_id == $request->semester_id
                         && $item->day == $request->day)
                         {
@@ -153,7 +155,7 @@ class ScheduleController extends Controller
 
 
                 $schedule->update([
-                    'college_id' => $request->college_id,
+                    'department_id' => $request->department_id,
                     'hall_id' => $request->hall_id,
                     'course_id' => $request->course_id,
                     'semester_id' => $request->semester_id,
@@ -195,11 +197,11 @@ class ScheduleController extends Controller
 
     public function getHalls(Request $request)
     {
-        $college_id = $request->college_id;
-        if($college_id != NULL)
+        $course_id = $request->course_id;
+        if($course_id != NULL)
         {
-            $halls = Hall::where('college_id',$college_id)->get();
-            $courses = Course::where('college_id',$college_id)->get();
+            $halls = Hall::where('course_id',$course_id)->get();
+            $courses = Course::where('id',$course_id)->get();
         }
         else
         {

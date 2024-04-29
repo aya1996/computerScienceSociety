@@ -28,7 +28,7 @@ class AdminRequest extends FormRequest
         if (in_array("PUT", request()->route()->methods)) {
             $rules['name'] = 'required|string|min:3';
             $rules['email'] = 'required|email|unique:admins,email,' . request()->admin;
-            $rules['password'] = 'sometimes|nullable|string:min:8';
+            $rules['password'] = 'sometimes|nullable|string|min:8';
             $rules['image'] = 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg,webp';
 
         }

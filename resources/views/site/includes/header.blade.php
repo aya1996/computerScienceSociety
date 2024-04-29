@@ -60,7 +60,12 @@
                                     </li>
                                     <li>
                                         <a href="{{route('my-table')}}">
-                                            جدولي
+                                            محاضراتي
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('my-appointments')}}">
+                                            مواعيدي
                                         </a>
                                     </li>
                                     <li>
@@ -103,13 +108,13 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{route('home')}}#colleges">
-                                        الكليات
+                                    <a href="{{route('home')}}#events">
+                                        أهم الأحداث
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route('create-table')}}">
-                                        إنشاء جدول
+                                         حجز موعد
                                     </a>
                                 </li>
                                 <li>

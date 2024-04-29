@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">أعضاء هيئة التدريس</h4>
+                        <h4 class="page-title">  بياناتي الشخصية</h4>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body table-responsive">
-                            <h4 class="m-t-0 header-title mb-4"><b>تعديل المعلم</b></h4>
+                            <h4 class="m-t-0 header-title mb-4"><b>تعديل البيانات الشخصية</b></h4>
 
                             <form class="parsley-examples" method="POST" action="{{ route('admin.update.user',$admin) }}" enctype="multipart/form-data">
                                 <div class="card">

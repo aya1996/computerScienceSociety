@@ -20,7 +20,7 @@
                         <div class="card-body table-responsive">
                             <h4 class="m-t-0 header-title mb-4"><b>تعديل الكلية</b></h4>
 
-                            <form  method="POST" action="{{route('colleges.update',$college->id)}}" enctype="multipart/form-data">
+                            <form  method="POST" action="{{route('events.update',$college->id)}}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card">

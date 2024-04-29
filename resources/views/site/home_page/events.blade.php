@@ -1,16 +1,16 @@
-@if ($colleges->count() > 0)
+@if ($events->count() > 0)
 <!-- Start Products-h -->
-<section class="products-h sch-h" id="colleges">
+<section class="products-h sch-h" id="events">
     <div class="container">
         <div class="row">
             <!-- Col -->
             <div class="col-md-12">
                 <div class="title title-center">
-                    <h3>الكليات</h3>
+                    <h3>أهم الأحداث</h3>
                 </div>
 
                 <div class="pro-slider owl-carousel owl-theme">
-                    @foreach ($colleges as $item)
+                    @foreach ($events as $item)
                         <div class="item">
                             <div class="pro-block">
                                 <div class="img-block">

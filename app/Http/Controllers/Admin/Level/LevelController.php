@@ -1,22 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Admin\College;
+namespace App\Http\Controllers\Admin\Level;
 
-use App\Models\College;
-use Illuminate\Http\Request;
-use App\Traits\FileManagerTrait;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\College\CollegeRequest;
+use App\Http\Requests\Level\LevelRequest;
+use App\Models\Building;
+use App\Models\Level;
+use App\Traits\FileManagerTrait;
+use Illuminate\Http\Request;
 
-class CollegeController extends Controller
+class LevelController extends Controller
 {
     use FileManagerTrait;
     public function index()
     {
         try
         {
-            $colleges = College::get();
-            return view('dashboard.colleges.index',compact('colleges'));
+        
+            $levels = Level::get();
+            $buildings= Building::get(); 
+            return view('dashboard.levels.index',compact('levels','buildings'));
         }
         catch(\Exception $ex)
         {
@@ -26,33 +29,19 @@ class CollegeController extends Controller
 
     public function edit($id)
     {
-        $college = College::findOrFail($id);
+        $level = Level::findOrFail($id);
         try
         {
-            if(isset($college))
+            if(isset($level))
             {
-                return view('dashboard.colleges.edit',compact('college'));
+                ;
+                $buildings= Building::get(); 
+                return view('dashboard.levels.edit',compact('level','buildings'));
             }
             else
             {
                 return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
             }
-        }
-        catch(Exception $ex)
-        {
-            return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
-        }
-    }
-
-    public function store(CollegeRequest $request)
-    {
-        try
-        {
-            $college = new College;
-            $college->name = $request->name;
-            $college->image = $this->upload('image','colleges');
-            $college->save();
-            return redirect()->route('colleges.index')->with('success' , 'تم الإضافة بنجاح');
         }
         catch(\Exception $ex)
         {
@@ -60,18 +49,36 @@ class CollegeController extends Controller
         }
     }
 
-    public function update(CollegeRequest $request,$id)
+    public function store(LevelRequest $request)
     {
-        $college = College::findOrFail($id);
         try
         {
-            if(isset($college))
+            $level = new Level();
+            $level->name = $request->name;
+            $level->building_id = $request->building_id;
+
+            $level->save();
+            return redirect()->route('levels.index')->with('success' , 'تم الإضافة بنجاح');
+        }
+        catch(\Exception $ex)
+        {
+            return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
+        }
+    }
+
+    public function update(LevelRequest $request,$id)
+    {
+        $building = Level::findOrFail($id);
+        try
+        {
+            if(isset($building))
             {
-                $college->update([
+                $building->update([
                     'name' => $request->name,
-                    'image' => $request->image ?  $this->updateFile('image','colleges',$college->image) : $college->image,
+                    'building_id'=> $request->building_id,
+                   
                 ]);
-                return redirect()->route('colleges.index')->with('success' ,'تم التعديل بنجاح');
+                return redirect()->route('levels.index')->with('success' ,'تم التعديل بنجاح');
             }
             else
             {
@@ -87,12 +94,12 @@ class CollegeController extends Controller
 
     public function destroy($id)
     {
+        $level = Level::findOrFail($id);
         try
         {
-            $college = College::find($id);
-            if(isset($college))
+            if(isset($level))
             {
-                $college->delete();
+                $level->delete();
                 return back()->with('success' , 'تم الحذف بنجاح');
             }
         }

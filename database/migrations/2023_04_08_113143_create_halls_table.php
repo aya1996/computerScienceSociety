@@ -14,11 +14,13 @@ class CreateHallsTable extends Migration
     public function up()
     {
         Schema::create('halls', function (Blueprint $table) {
-            $table->BigIncrements('id');
+            $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('college_id');
+            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('building_id');
             $table->timestamps();
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('building_id')->references('id')->on('building')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

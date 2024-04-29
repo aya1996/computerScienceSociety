@@ -12,8 +12,12 @@ class Hall extends Model
     protected $guarded = [];
 
 
-    public function college()
+    public function building()
     {
-        return $this->belongsTo(College::class,'college_id');
+        return $this->belongsTo(Building::class,'building_id');
+    }
+    public function level()
+    {
+        return $this->belongsTo(Level::class,'level_id');
     }
 }

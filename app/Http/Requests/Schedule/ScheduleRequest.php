@@ -22,7 +22,7 @@ class ScheduleRequest extends FormRequest
     {
         $rules = [
             'day' => 'required|string',
-            'college_id' => 'required|numeric|min:1',
+            'department_id' => 'required|numeric|min:1',
             'hall_id' => 'required|numeric|min:1',
             'course_id' => 'required|numeric|min:1',
             'time_from' => 'date_format:H:i',

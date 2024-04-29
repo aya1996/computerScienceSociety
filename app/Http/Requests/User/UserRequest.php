@@ -22,6 +22,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $rules = [
+            'national_id'=>'required|integer',
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',

@@ -30,8 +30,8 @@
                                         <th class="text-center">رقم</th>
                                         <th class="text-center">اليوم</th>
                                         <th class="text-center">القاعة</th>
-                                        <th class="text-center">الكلية</th>
-                                        <th class="text-center">المقرر</th>
+                                        <th class="text-center">القسم</th>
+                                        <th class="text-center">المادة الدراسية</th>
                                         <th class="text-center">الفصل الدراسي</th>
                                         <th class="text-center">من</th>
                                         <th class="text-center">إلي</th>
@@ -46,7 +46,7 @@
                                                 <td class="text-center">{{$key + 1}}</td>
                                                 <td class="text-center">{{$schedule->day}}</td>
                                                 <td class="text-center">{{$schedule->hall->name ?? ''}}</td>
-                                                <td class="text-center">{{$schedule->college->name ?? ''}}</td>
+                                                <td class="text-center">{{$schedule->department->name ?? ''}}</td>
                                                 <td class="text-center">{{$schedule->course->name ?? ''}}</td>
                                                 <td class="text-center">{{$schedule->semester->name ?? ''}}</td>
                                                 <td class="text-center">{{$schedule->time_from}}</td>
@@ -110,12 +110,12 @@
 
 
                             <div class="form-group">
-                                <label for="userName">الكلية<span class="text-danger">*</span></label>
-                                <select name="college_id" parsley-trigger="change" required class="form-control" id="college_id">
-                                    @if ($colleges->count() > 0)
+                                <label for="userName">القسم<span class="text-danger">*</span></label>
+                                <select name="department_id" parsley-trigger="change" required class="form-control" id="college_id">
+                                    @if ($departments->count() > 0)
                                         <option value="#" selected disabled>اختر ...</option>
-                                        @foreach ($colleges as $college)
-                                            <option value="{{$college->id}}">{{$college->name}}</option>
+                                        @foreach ($departments as $department)
+                                            <option value="{{$department->id}}">{{$department->name}}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -123,13 +123,23 @@
                             <div class="form-group">
                                 <label for="userName">القاعة<span class="text-danger">*</span></label>
                                 <select name="hall_id" parsley-trigger="change" required class="form-control" id="hall_id">
-
+                                @if ($halls->count() > 0)
+                                        <option value="#" selected >اختر ...</option>
+                                        @foreach ($halls as $hall)
+                                            <option value="{{$hall->id}}">{{$hall->name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="userName">المقرر<span class="text-danger">*</span></label>
+                                <label for="userName">المادة<span class="text-danger">*</span></label>
                                 <select name="course_id" parsley-trigger="change" required class="form-control" id="course_id">
-
+                                @if ($courses->count() > 0)
+                                        <option value="#" selected >اختر ...</option>
+                                        @foreach ($courses as $course)
+                                            <option value="{{$course->id}}">{{$course->name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
@@ -176,13 +186,13 @@
 @section('js')
     <script>
         $(document).ready(function(){
-            $(document).on('change','#college_id',function(e){
+            $(document).on('change','#department_id',function(e){
                 var college_id = e.target.value;
                 $.ajax({
                       url:"{{ route('get-halls') }}",
                       type:"POST",
                       data: {
-                           college_id: college_id,
+                        course_id:course_id,
                            _token: '{!! csrf_token() !!}',
                        },
                       success:function (data) {

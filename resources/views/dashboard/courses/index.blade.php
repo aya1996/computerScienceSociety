@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body table-responsive">
-                            <h4 class="m-t-0 header-title mb-4"><b>المقررات</b></h4>
+                            <h4 class="m-t-0 header-title mb-4"><b>المواد الدراسية</b></h4>
                             <div class="font-13 m-b-30">
                                 <button class="btn btn-success text-right waves-effect waves-light" data-toggle="modal" data-target="#create-modal">إضافة جديد</button>
                             </div>
@@ -30,7 +30,8 @@
                                         <th class="text-center">رقم</th>
                                         <th class="text-center">الاسم</th>
                                         <th class="text-center">الصورة</th>
-                                        <th class="text-center">الكلية</th>
+                                        <th class="text-center">الفصل الدراسي</th>
+                                        <th class="text-center">القسم </th>
                                         <th class="text-center">التحكم</th>
                                     </tr>
                                 </thead>
@@ -44,7 +45,8 @@
                                                 <td class="text-center">
                                                     <img src="{{asset($course->image)}}" style="width: 50px; height: 50px; border-radius: 50%">
                                                 </td>
-                                                <td class="text-center">{{$course->college->name}}</td>
+                                                <td class="text-center">{{$course->semester->name}}</td>
+                                                <td class="text-center">{{$course->department->name}}</td>
                                                 <td class="text-center">
                                                     <a href="{{route('courses.edit' ,$course->id )}}">
                                                       <button type="button" class="btn btn-primary waves-effect width-md waves-light">تعديل</button>
@@ -107,11 +109,21 @@
                                 <input type="text" name="name" parsley-trigger="change" required placeholder="الاسم" class="form-control" id="userName">
                             </div>
                             <div class="form-group">
-                                <label for="userName">الكلية<span class="text-danger">*</span></label>
-                                <select name="college_id" parsley-trigger="change" required class="form-control">
-                                    @if ($colleges->count() > 0)
-                                        @foreach ($colleges as $college)
-                                            <option value="{{$college->id}}">{{$college->name}}</option>
+                                <label for="userName">الفصل الدراسي<span class="text-danger">*</span></label>
+                                <select name="semester_id" parsley-trigger="change" required class="form-control">
+                                    @if ($semesters->count() > 0)
+                                        @foreach ($semesters as $semester)
+                                            <option value="{{$semester->id}}">{{$semester->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName"> القسم<span class="text-danger">*</span></label>
+                                <select name="department_id" parsley-trigger="change" required class="form-control">
+                                    @if ($departments->count() > 0)
+                                        @foreach ($departments as $department)
+                                            <option value="{{$department->id}}">{{$department->name}}</option>
                                         @endforeach
                                     @endif
                                 </select>

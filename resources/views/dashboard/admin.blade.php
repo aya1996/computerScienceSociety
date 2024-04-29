@@ -64,8 +64,8 @@
                             <div class="text-white media">
                                 <div class="media-body align-self-center">
                                     <h2 class="my-0 text-white"><span data-plugin="counterup">
-                                        {{\App\Models\College::get()->count()}}</span></h2>
-                                    <p class="mb-0">الكليات</p>
+                                        {{\App\Models\Event::get()->count()}}</span></h2>
+                                    <p class="mb-0">أهم الأحداث</p>
                                 </div>
                                 <i class="ion-ios-book"></i>
                             </div>

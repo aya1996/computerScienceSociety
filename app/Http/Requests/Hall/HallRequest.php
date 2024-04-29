@@ -23,7 +23,8 @@ class HallRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|min:2|max:255',
-            'college_id' => 'required|numeric|min:1',
+            'building_id' => 'required|numeric|min:1',
+            'level_id' => 'required|numeric|min:1',
         ];
 
         if (in_array("PUT", request()->route()->methods)) {

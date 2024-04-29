@@ -17,9 +17,11 @@ class CreateCoursesTable extends Migration
             $table->BigIncrements('id');
             $table->string('name');
             $table->string('image');
-            $table->unsignedBigInteger('college_id');
+            $table->unsignedBigInteger('semester_id');
+            $table->unsignedBigInteger('department_id');
             $table->timestamps();
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

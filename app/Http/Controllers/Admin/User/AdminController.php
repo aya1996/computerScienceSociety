@@ -42,7 +42,7 @@ class AdminController extends Controller
                 return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
             }
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
         }
@@ -70,17 +70,20 @@ class AdminController extends Controller
 
     public function update(AdminRequest $request,$id)
     {
-        $admin = Admin::find($id);
+        $admin = Admin::findOrFail($id);
+        
         try
         {
             if(isset($admin))
             {
+                // dd($request->password);
                 $admin->update([
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => $request->password ? bcrypt($request->password) : $admin->password,
                     'image' => $request->image ?  $this->updateFile('image','admins',$admin->image) : $admin->image,
                 ]);
+                
                 return redirect()->route('admins.index')->with('success' ,'تم التعديل بنجاح');
             }
             else

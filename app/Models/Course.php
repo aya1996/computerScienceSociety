@@ -12,9 +12,13 @@ class Course extends Model
     protected $guarded = [];
 
 
-    public function college()
+    public function semester()
     {
-        return $this->belongsTo(College::class,'college_id');
+        return $this->belongsTo(Semester::class,'semester_id');
+    }
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'department_id');
     }
 }
 

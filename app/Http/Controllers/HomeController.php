@@ -6,7 +6,8 @@ use App\Models\Blog;
 use App\Models\About;
 use App\Models\Admin;
 use App\Models\Slider;
-use App\Models\College;
+
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +19,7 @@ class HomeController extends Controller
         $about = About::first();
         $teachers = Admin::where(['role_id' => 2])->get();
         $blogs = Blog::get();
-        $colleges = College::get();
-        return view('welcome',compact('sliders','about','teachers','blogs','colleges'));
+        $events = Event::get();
+        return view('welcome',compact('sliders','about','teachers','blogs','events'));
     }
 }

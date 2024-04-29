@@ -9,6 +9,9 @@ use App\Traits\FileManagerTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hall\HallRequest;
 use App\Http\Requests\College\CollegeRequest;
+use App\Models\Building;
+use App\Models\Course;
+use App\Models\Level;
 
 class HallController extends Controller
 {
@@ -18,8 +21,9 @@ class HallController extends Controller
         try
         {
             $halls = Hall::get();
-            $colleges = College::get();
-            return view('dashboard.halls.index',compact('halls','colleges'));
+            $buildings = Building::get();
+            $levels = Level::get();
+            return view('dashboard.halls.index',compact('halls','buildings','levels'));
         }
         catch(\Exception $ex)
         {
@@ -34,15 +38,16 @@ class HallController extends Controller
         {
             if(isset($hall))
             {
-                $colleges = College::get();
-                return view('dashboard.halls.edit',compact('hall','colleges'));
+                $buildings = Building::get();
+                $levels = Level::get();
+                return view('dashboard.halls.edit',compact('hall','buildings','levels'));
             }
             else
             {
                 return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
             }
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
         }
@@ -54,7 +59,8 @@ class HallController extends Controller
         {
             $hall = new Hall;
             $hall->name = $request->name;
-            $hall->college_id = $request->college_id;
+            $hall->building_id = $request->building_id;
+            $hall->level_id = $request->level_id;
             $hall->save();
             return redirect()->route('halls.index')->with('success' , 'تم الإضافة بنجاح');
         }
@@ -73,7 +79,8 @@ class HallController extends Controller
             {
                 $hall->update([
                     'name' => $request->name,
-                    'college_id' => $request->college_id,
+                    'building_id' => $request->building_id,
+                    'level_id' => $request->level_id,
                 ]);
                 return redirect()->route('halls.index')->with('success' ,'تم التعديل بنجاح');
             }

@@ -74,13 +74,22 @@
 
                     <div class="social-f">
                         <a href="{{$info->facebook ?? ''}}" target="_blank" class=" wow animate__animated animate__slideInUp">
-                            <i class="fab fa-facebook-f"></i>
+                            <i class="fab fa-instagram"></i>
                         </a>
                         <a href="{{$info->youtube ?? ''}}" target="_blank" class=" wow animate__animated animate__slideInUp">
                             <i class="fab fa-youtube"></i>
                         </a>
                         <a href="{{$info->twitter ?? ''}}" target="_blank" class=" wow animate__animated animate__slideInUp">
                             <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://t.me/+FOcdtHFdQT1iYjhk" target="_blank" class=" wow animate__animated animate__slideInUp">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://vm.tiktok.com/ZSdeTvWjJ/" target="_blank" class=" wow animate__animated animate__slideInUp">
+                        <i class="fab fa-tiktok" style="color:white;">TikTok</i>
+                        </a>
+                        <a href="https://linktr.ee/CSSpaaetkw?utm_source=linktree_profile_share&ltsid=d65325b4-3b63-469f-a961-2c5fd6b47b4e" target="_blank" class=" wow animate__animated animate__slideInUp">
+                            <i class="fab fa-blog" >LinkTree</i>
                         </a>
                     </div>
                 </div>

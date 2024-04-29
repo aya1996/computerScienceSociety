@@ -26,12 +26,12 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="userName">الكلية<span class="text-danger">*</span></label>
-                                            <select name="college_id" parsley-trigger="change" required class="form-control" id="college_id">
-                                                @if ($colleges->count() > 0)
+                                            <label for="userName">القسم<span class="text-danger">*</span></label>
+                                            <select name="department_id" parsley-trigger="change" required class="form-control" id="department_id">
+                                                @if ($departments->count() > 0)
                                                     <option value="#" selected disabled>اختر ...</option>
-                                                    @foreach ($colleges as $college)
-                                                        <option value="{{$college->id}}" {{$college->id == $schedule->college_id ? 'selected' : ''}}>{{$college->name}}</option>
+                                                    @foreach ($departments as $department)
+                                                        <option value="{{$department->id}}" {{$department->id == $schedule->department_id ? 'selected' : ''}}>{{$department->name}}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -48,7 +48,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="userName">المقرر<span class="text-danger">*</span></label>
+                                            <label for="userName">المادة<span class="text-danger">*</span></label>
                                             <select name="course_id" parsley-trigger="change" required class="form-control" id="course_id">
                                                 @if ($courses->count() > 0)
                                                     <option value="#" selected disabled>اختر ...</option>
@@ -102,13 +102,13 @@
 @section('js')
     <script>
         $(document).ready(function(){
-            $(document).on('change','#college_id',function(e){
-                var college_id = e.target.value;
+            $(document).on('change','#department_id',function(e){
+                var department_id = e.target.value;
                 $.ajax({
                       url:"{{ route('get-halls') }}",
                       type:"POST",
                       data: {
-                           college_id: college_id,
+                           department_id: department_id,
                            _token: '{!! csrf_token() !!}',
                        },
                       success:function (data) {

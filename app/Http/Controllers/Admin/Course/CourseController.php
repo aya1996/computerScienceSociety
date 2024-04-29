@@ -9,6 +9,8 @@ use App\Traits\FileManagerTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Course\CourseRequest;
 use App\Http\Requests\College\CollegeRequest;
+use App\Models\Department;
+use App\Models\Semester;
 
 class CourseController extends Controller
 {
@@ -18,8 +20,9 @@ class CourseController extends Controller
         try
         {
             $courses = Course::get();
-            $colleges = College::get();
-            return view('dashboard.courses.index',compact('courses','colleges'));
+            $semesters = Semester::get();
+            $departments=Department::get();
+            return view('dashboard.courses.index',compact('courses','semesters','departments'));
         }
         catch(\Exception $ex)
         {
@@ -34,15 +37,16 @@ class CourseController extends Controller
         {
             if(isset($course))
             {
-                $colleges = College::get();
-                return view('dashboard.courses.edit',compact('course','colleges'));
+                $semesters = Semester::get();
+                $departments=Department::get();
+                return view('dashboard.courses.edit',compact('course','semesters','departments'));
             }
             else
             {
                 return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
             }
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             return back()->with('failed' , 'هناك خطأ ما فضلا المحاولة لاحقا');
         }
@@ -55,7 +59,9 @@ class CourseController extends Controller
             $course = new Course;
             $course->name = $request->name;
             $course->image = $this->upload('image','courses');
-            $course->college_id = $request->college_id;
+            $course->semester_id = $request->semester_id;
+            $course->department_id = $request->department_id;
+
             $course->save();
             return redirect()->route('courses.index')->with('success' , 'تم الإضافة بنجاح');
         }
@@ -74,7 +80,9 @@ class CourseController extends Controller
             {
                 $course->update([
                     'name' => $request->name,
-                    'college_id' => $request->college_id,
+                    'semester_id' => $request->semester_id,
+                    'department_id' => $request->department_id,
+
                     'image' => $request->image ?  $this->updateFile('image','courses',$course->image) : $course->image,
                 ]);
                 return redirect()->route('courses.index')->with('success' ,'تم التعديل بنجاح');

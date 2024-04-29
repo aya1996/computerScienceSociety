@@ -28,6 +28,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">رقم</th>
+                                        <th class="text-center">الرقم المدني</th>
                                         <th class="text-center">الاسم</th>
                                         <th class="text-center">البريد الإلكتروني</th>
                                         <th class="text-center">الصورة</th>
@@ -40,6 +41,7 @@
                                         @foreach ($users as $key => $user)
                                             <tr>
                                                 <td class="text-center">{{$key + 1}}</td>
+                                                <td class="text-center">{{$user->national_id}}</td>
                                                 <td class="text-center">{{$user->name}}</td>
                                                 <td class="text-center">{{$user->email}}</td>
                                                 <td class="text-center">
@@ -101,7 +103,10 @@
                         <form class="parsley-examples" method="POST" action="{{route('users.store')}}" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
-
+                            <div class="form-group">
+                                <label for="userName">الرقم المدني<span class="text-danger">*</span></label>
+                                <input type="number" name="national_id" parsley-trigger="change" required placeholder="الرقم المدني" class="form-control" id="national_id">
+                            </div>
                             <div class="form-group">
                                 <label for="userName">الإسم<span class="text-danger">*</span></label>
                                 <input type="text" name="name" parsley-trigger="change" required placeholder="الاسم" class="form-control" id="userName">

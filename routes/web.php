@@ -27,10 +27,12 @@ Route::put('change_password', [App\Http\Controllers\UserController::class, 'chan
 Route::get('all-blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('all-blogs');
 Route::get('single-blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('single-blog');
 Route::get('create-table', [App\Http\Controllers\TableController::class, 'index'])->name('create-table')->middleware('auth');
-Route::post('get-courses', [App\Http\Controllers\TableController::class, 'getCourses'])->name('get-courses');
-Route::post('get-colleges', [App\Http\Controllers\TableController::class, 'getColleges'])->name('get-colleges');
-Route::post('get-teachers', [App\Http\Controllers\TableController::class, 'getTeachers'])->name('get-teachers');
+Route::post('get-levels', [App\Http\Controllers\TableController::class, 'getLevels'])->name('get-levels');
+Route::post('get-hall', [App\Http\Controllers\TableController::class, 'getHalls'])->name('get-hall');
+Route::post('get-officeHours', [App\Http\Controllers\TableController::class, 'getOfficeHours'])->name('get-officeHours');
 Route::post('table-store', [App\Http\Controllers\TableController::class, 'store'])->name('table-store')->middleware('auth');;
 Route::get('my-table', [App\Http\Controllers\TableController::class, 'getTable'])->name('my-table')->middleware('auth');;
+Route::get('my-appointments', [App\Http\Controllers\TableController::class, 'getAppointment'])->name('my-appointments')->middleware('auth');;
 Route::get('delete-schedule/{id}', [App\Http\Controllers\TableController::class, 'deleteSchedule'])->name('delete-schedule')->middleware('auth');;
+Route::get('delete-appointment/{id}', [App\Http\Controllers\TableController::class, 'deleteAppointment'])->name('delete-appointment')->middleware('auth');;
 

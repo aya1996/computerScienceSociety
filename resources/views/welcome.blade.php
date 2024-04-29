@@ -12,6 +12,6 @@
 
     @include('site.home_page.teacher')
 
-    @include('site.home_page.colleges')
+    @include('site.home_page.events')
 
 @endsection

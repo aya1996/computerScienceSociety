@@ -71,6 +71,10 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-profile">
+                                <div class="form-group">
+                                        <label>الرقم المدني</label>
+                                        <input type="number" name="national_id" value="{{auth()->user()->national_id}}" placeholder="الرقم المدني" class="form-control" required/>
+                                    </div>
                                     <div class="form-group">
                                         <label>الإسم</label>
                                         <input type="text" name="name" value="{{auth()->user()->name}}" placeholder="الإسم" class="form-control" required/>

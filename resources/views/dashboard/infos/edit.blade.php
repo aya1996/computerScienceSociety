@@ -38,8 +38,8 @@
                                             <input type="number" name="phone" required value="{{$info->phone}}" placeholder="الهاتف" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="userName">فيسبوك<span class="text-danger">*</span></label>
-                                            <input type="url" name="facebook" required value="{{$info->facebook}}" placeholder="فيسبوك" class="form-control">
+                                            <label for="userName">إنستجرام<span class="text-danger">*</span></label>
+                                            <input type="url" name="facebook" required value="{{$info->facebook}}" placeholder="إنستجرام" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="userName">يوتيوب<span class="text-danger">*</span></label>

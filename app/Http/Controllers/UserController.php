@@ -21,6 +21,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail(auth()->id());
         $user->update([
+            'national_id' => $request->national_id,
             'name' => $request->name,
             'email' => $request->email,
             'image' => $request->image ?  $this->updateFile('image','users',$user->image) : $user->image,
